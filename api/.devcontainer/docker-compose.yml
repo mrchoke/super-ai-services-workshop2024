@@ -1,0 +1,17 @@
+services:
+  api:
+    hostname: api
+    build:
+      context: ./.devcontainer
+      dockerfile: Dockerfile.dev
+      args:
+        USER_UID: ${USER_UID:-1000}
+    environment:
+      - ROOT_PATH=${ROOT_PATH:-}
+      - PYTHONUNBUFFERED=1
+    ports:
+      - "${LOCAL_IP:-127.0.0.1}:${API_PORT:-8000}:8000"
+    volumes:
+      - ./:/workspace/api:cached
+    init: true
+    command: [ 'sleep', 'infinity' ]

@@ -1,0 +1,44 @@
+FROM python:3.12-slim
+
+ENV TZ=Asia/Bangkok
+
+RUN apt update \
+  && apt install -y \
+  curl \
+  gettext-base \
+  git \
+  gpgconf \
+  locales \
+  openssh-client \
+  rsync \
+  sudo \
+  && apt-get clean autoclean \
+  && apt-get autoremove --yes \
+  && rm -rf /var/lib/{apt,dpkg,cache,log}/
+
+RUN sed --in-place '/en_US.UTF-8/s/^#//' /etc/locale.gen  \
+  &&  sed --in-place '/th_TH.UTF-8/s/^#//' /etc/locale.gen \
+  && locale-gen
+
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
+ENV LANG en_US.UTF-8
+ENV LANGUAGE en_US:en
+ENV LC_ALL en_US.UTF-8
+
+
+ARG USERNAME=fastapi
+ARG USER_UID=1000
+ARG USER_GID=${USER_UID}
+
+RUN echo ${USERNAME} ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/${USERNAME}
+
+USER ${USERNAME}
+
+ENV VIRTUAL_ENV /home/${USERNAME}/venv
+
+WORKDIR /workspace/api
+
+ENV PYTHONPATH=/workspace/api
+
+EXPOSE 8000

@@ -1,0 +1,24 @@
+FROM mcr.microsoft.com/devcontainers/typescript-node:1-20-bookworm
+
+ENV TZ=Asia/Bangkok
+
+RUN sed --in-place '/en_US.UTF-8/s/^#//' /etc/locale.gen  \
+  &&  sed --in-place '/th_TH.UTF-8/s/^#//' /etc/locale.gen \
+  && locale-gen
+
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
+ENV LANG en_US.UTF-8
+ENV LANGUAGE en_US:en
+ENV LC_ALL en_US.UTF-8
+
+ARG USERNAME=node
+
+
+ENV PNPM_HOME="/home/${USERNAME}/pnpm"
+ENV PATH="$PNPM_HOME:$PATH"
+
+USER ${USERNAME}
+
+WORKDIR /workspace/ui
+

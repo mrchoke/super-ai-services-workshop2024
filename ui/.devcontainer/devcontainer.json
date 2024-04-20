@@ -1,0 +1,131 @@
+{
+  "name": "Vue.js",
+  "dockerComposeFile": [
+    "./docker-compose.yml"
+  ],
+  "service": "ui",
+  "workspaceFolder": "/workspace/ui",
+  "containerUser": "node",
+  "init": true,
+  "updateRemoteUserUID": true,
+  "mounts": [
+    "type=volume,target=${containerWorkspaceFolder}/node_modules",
+    "type=volume,target=${containerWorkspaceFolder}/.pnpm-store"
+  ],
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "editorconfig.editorconfig",
+        "formulahendry.auto-complete-tag",
+        "oderwat.indent-rainbow",
+        "syler.sass-indented",
+        "bradlc.vscode-tailwindcss",
+        "Vue.volar",
+        "wayou.vscode-todo-highlight"
+      ],
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash",
+        "remote.localPortHost": "allInterfaces",
+        "editor.formatOnSave": true,
+        "editor.formatOnPaste": true,
+        "editor.formatOnType": false,
+        "editor.formatOnSaveMode": "file",
+        "typescript.tsdk": "node_modules/typescript/lib",
+        "indentRainbow.indicatorStyle": "light",
+        "editor.minimap.enabled": false,
+        "terminal.integrated.cursorBlinking": true,
+        "editor.tabSize": 2,
+        "[vue]": {
+          "editor.formatOnSave": true,
+          "editor.defaultFormatter": "Vue.volar"
+        },
+        "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+        "typescript.format.insertSpaceBeforeFunctionParenthesis": true,
+        "javascript.format.insertSpaceBeforeFunctionParenthesis": true,
+        "vue.autoInsert.dotValue": true,
+        "vue.autoInsert.parentheses": true,
+        "vue.format.template.initialIndent": true,
+        "vue.format.script.initialIndent": true,
+        "vue.format.style.initialIndent": true,
+        "vue.inlayHints.missingProps": true,
+        "vue.inlayHints.parameterNames": true,
+        "vue.inlayHints.typeHints": true,
+        "vue.inlayHints.enumValues": true,
+        "vue.inlayHints.functionLikeReturnTypes": true,
+        "vue.inlayHints.functionLikeParameterTypes": true,
+        "vue.inlayHints.functionLikeParameterNames": true,
+        "vue.inlayHints.functionLikeTypeArguments": true,
+        "vue.inlayHints.functionLikeTypeParameterNames": true,
+        "vue.inlayHints.enumConstValues": true,
+        "vue.inlayHints.enumConstNames": true,
+        "vue.inlayHints.chainingHints": true,
+        "vue.inlayHints.otherTypeHints": true,
+        "vue.inlayHints.typeHints.enabled": true,
+        "vue.inlayHints.typeHints.chainingHints": true,
+        "vue.inlayHints.typeHints.functionLikeReturnTypes": true,
+        "vue.inlayHints.typeHints.functionLikeParameterTypes": true,
+        "vue.inlayHints.typeHints.functionLikeParameterNames": true,
+        "vue.inlayHints.typeHints.functionLikeTypeArguments": true,
+        "vue.inlayHints.typeHints.functionLikeTypeParameterNames": true,
+        "vue.inlayHints.typeHints.enumConstValues": true,
+        "vue.inlayHints.typeHints.enumConstNames": true,
+        "vue.inlayHints.typeHints.otherTypeHints": true,
+        "vue.inlayHints.typeHints.missingProps": true,
+        "vue.inlayHints.typeHints.parameterNames": true,
+        "vue.inlayHints.typeHints.inlineHandler": true,
+        "vue.inlayHints.typeHints.inlineHandlerLeading": true,
+        "vue.inlayHints.typeHints.inlineHandlerDelimiter": true,
+        "vue.inlayHints.optionsWrapper": false,
+        "vue.inlayHints.inlineHandlerLeading": false,
+        "editor.codeActionsOnSave": {
+          "source.fixAll.eslint": "always",
+          "source.organizeImports": "always"
+        },
+        "files.associations": {
+          "*.css": "tailwindcss"
+        },
+        "eslint.validate": [
+          "javascript",
+          "javascriptreact",
+          "typescript",
+          "vue"
+        ],
+        "javascript.format.semicolons": "remove",
+        "typescript.format.semicolons": "remove",
+        "editor.bracketPairColorization.enabled": true,
+        "volar.codeLens.scriptSetupTools": true,
+        "editor.guides.indentation": false,
+        "editor.guides.bracketPairs": true,
+        "editor.autoClosingBrackets": "always",
+        "editor.inlineSuggest.enabled": true,
+        "editor.guides.highlightActiveIndentation": false,
+        "workbench.colorCustomizations": {
+          "editorUnnecessaryCode.border": "#fbbd52",
+          "editorUnnecessaryCode.opacity": "#ffffff8b",
+          "editorIndentGuide.background1": "#2a2a2a"
+        },
+        "editor.showUnused": true,
+        "editor.renderLineHighlight": "gutter",
+        "terminal.integrated.gpuAcceleration": "on",
+        "terminal.integrated.copyOnSelection": true,
+        "terminal.integrated.cursorStyle": "line",
+        "terminal.integrated.fontSize": 15,
+        "files.exclude": {
+          "**/node_modules": true,
+          "**/.git": true,
+          ".pnpm-store": true,
+          ".quasar": true
+        },
+        "editor.quickSuggestions": {
+          "other": "on",
+          "comments": "on",
+          "strings": "on"
+        },
+        "html.format.wrapAttributes": "auto",
+        "indentRainbow.lightIndicatorStyleLineWidth": 1
+      }
+    }
+  },
+  "postCreateCommand": ".devcontainer/postcreate.sh"
+}

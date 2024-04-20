@@ -1,0 +1,15 @@
+services:
+  api:
+    build:
+      context: .devcontainer
+      dockerfile: Dockerfile.deploy
+    restart: always
+    init: true
+    environment:
+      - ROOT_PATH=${ROOT_PATH:-}
+      - FORWARDED_ALLOW_IPS="*"
+      - WORKERS_PER_CORE=${WORKERS_PER_CORE:-0.2}
+      - PYTHONUNBUFFERED=1
+
+    ports:
+      - "${LOCAL_IP:-127.0.0.1}:${API_PORT:-8000}:8000"

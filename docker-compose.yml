@@ -1,0 +1,28 @@
+services:
+  api:
+    build:
+      context: api
+      dockerfile: .devcontainer/Dockerfile
+    restart: always
+    init: true
+    environment:
+      ROOT_PATH: ${ROOT_PATH:-/api}
+      FORWARDED_ALLOW_IPS: '"*"'
+      WORKERS_PER_CORE: ${WORKERS_PER_CORE:-0.13}
+      PYTHONUNBUFFERED: 1
+
+  nginx:
+    build:
+      context: ui
+      dockerfile: .devcontainer/Dockerfile
+      args:
+        - NGINX_DEFAULT=${NGINX_DEFAULT:-default.conf}
+    restart: always
+    depends_on:
+      - api
+    ports:
+      - ${LOCAL_IP:-127.0.0.1}:${NGINX_PORT:-8880}:80
+
+networks:
+  default:
+    name: super-ai-qr
