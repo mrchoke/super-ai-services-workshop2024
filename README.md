@@ -56,6 +56,9 @@ code api
 code ui
 ```
 
+** ให้กดปุ่ม Open in container
+
+
 ## Dev
 
 รอจน buid เสร็จ ให้ปิด terminal เดิมแล้วเปิด terminal ใหม่ ทั้ง UI และ API
