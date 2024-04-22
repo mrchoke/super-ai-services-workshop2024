@@ -75,7 +75,7 @@ python main.py
 ### UI
 
 ```
-pmpm dev
+pnpm dev
 ```
 เปิดเว็บที่ http://localhost:4173 ถ้าไม่เปลี่ยน port
 
